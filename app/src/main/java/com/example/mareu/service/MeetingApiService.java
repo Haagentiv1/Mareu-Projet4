@@ -27,8 +27,6 @@ public interface MeetingApiService {
 
     String concatEmail(Meeting meeting);
 
-    Boolean emailVerification(List<String>list);
-
     Boolean emptyTextVerification(String Text);
 
     Boolean dateVerification(String Date);

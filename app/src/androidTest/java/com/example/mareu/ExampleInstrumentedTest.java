@@ -34,6 +34,7 @@ import static com.example.mareu.utils.RecyclerViewItemCountAssertion.withItemCou
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.anything;
+import static org.hamcrest.Matchers.is;
 import static org.hamcrest.core.IsNull.notNullValue;
 
 
@@ -85,7 +86,9 @@ public class ExampleInstrumentedTest {
         onView(allOf(withId(android.R.id.button1), withText("OK") ,isDisplayed())).perform(scrollTo(), click());
         onView(allOf(withClassName(Matchers.equalTo(TimePicker.class.getName())))).perform(PickerActions.setTime(11,30));
         onView(allOf(withId(android.R.id.button1), withText("OK") ,isDisplayed())).perform(scrollTo(), click());
-        onView(ViewMatchers.withId(R.id.MeetingParticipantsEditText)).perform(scrollTo()).perform(typeText("test@gmail.com"));
+        onView(allOf(withId(R.id.emailSpinner))).perform(click());
+        onData(anything()).inAdapterView(allOf(withClassName(is("com.android.internal.app.AlertController$RecycleListView")))).atPosition(3).perform(click());
+        onView(allOf(withId(android.R.id.button1), withText("OK"),isDisplayed())).perform(scrollTo(),click());
         closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.CreateMeetingBtn)).perform(click());
         onView(ViewMatchers.withId(R.id.list_meeting)).check(withItemCount(ITEMS_COUNT + 1));
@@ -162,7 +165,9 @@ public class ExampleInstrumentedTest {
         onView(allOf(withId(android.R.id.button1), withText("OK") ,isDisplayed())).perform(scrollTo(), click());
         onView(allOf(withClassName(Matchers.equalTo(TimePicker.class.getName())))).perform(PickerActions.setTime(14,30));
         onView(allOf(withId(android.R.id.button1), withText("OK") ,isDisplayed())).perform(scrollTo(), click());
-        onView(ViewMatchers.withId(R.id.MeetingParticipantsEditText)).perform(scrollTo()).perform(typeText("test@gmail.com"));
+        onView(allOf(withId(R.id.emailSpinner))).perform(click());
+        onData(anything()).inAdapterView(allOf(withClassName(is("com.android.internal.app.AlertController$RecycleListView")))).atPosition(3).perform(click());
+        onView(allOf(withId(android.R.id.button1), withText("OK"),isDisplayed())).perform(scrollTo(),click());
         closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.CreateMeetingBtn)).perform(click());
         pressBack();

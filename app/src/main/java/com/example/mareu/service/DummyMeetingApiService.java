@@ -98,13 +98,6 @@ public class DummyMeetingApiService implements MeetingApiService {
             concatEmail = concatEmail + " " + string; }
         return concatEmail;
     }
-    @Override
-    public Boolean emailVerification(List<String>list) {
-        String EmailPattern = "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$";
-        for (String string : list){
-            if (!string.matches(EmailPattern)){return false;}
-        }return true;
-    }
 
     @Override
     public Boolean emptyTextVerification(String Text) {
@@ -153,6 +146,4 @@ public class DummyMeetingApiService implements MeetingApiService {
         }
         return true;
     }
-
-
 }

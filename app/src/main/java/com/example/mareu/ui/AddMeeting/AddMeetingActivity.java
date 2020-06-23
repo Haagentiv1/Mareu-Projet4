@@ -97,17 +97,14 @@ public class AddMeetingActivity extends AppCompatActivity {
         mCreateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (!mApiService.meetingVerificationBis(getSelectedPlace(),mMeetingDate.getEditText().getText().toString(),mStartHour,mEndHour)){
+                if (!mApiService.meetingVerificationBis(getSelectedPlace(), mMeetingDate.getEditText().getText().toString(), mStartHour, mEndHour)) {
                     Toast.makeText(getApplicationContext(), R.string.error_room, Toast.LENGTH_SHORT).show();
-
-                if (!EditTextVerification()) {
-                    Toast.makeText(getApplicationContext(),R.string.editText_error , Toast.LENGTH_SHORT).show();
-
-                }}
-                 else {
+                } else if (!EditTextVerification()) {
+                    Toast.makeText(getApplicationContext(), R.string.editText_error, Toast.LENGTH_SHORT).show();
+                }else {
                     mApiService.addMeeting(CreateMeeting());
-                    AddMeetingActivity.this.finish(); }
+                    AddMeetingActivity.this.finish();
+                }
             }
         });
     }
