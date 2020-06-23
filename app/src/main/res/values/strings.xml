@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Ma réu</string>
+    <string name="title_activity_main" translatable="false">activity_list_meeting</string>
+    <string name="filter_by_place">The list has been filtered by room.</string>
+    <string name="filter_by_hours">The list has been filtered by hour.</string>
+    <string name="filter_by_date">The list has been filtered by date.</string>
+    <string name="editText_error">You have not completed all required fields.</string>
+    <string name="contributors">Contributors</string>
+    <string name="meeting_name">Meeting Name</string>
+    <string name="meeting_subject">Meeting subject</string>
+    <string name="meeting_place">Meeting Room</string>
+    <string name="meeting_date">Meeting Date</string>
+    <string name="meeting_hours">Meeting Hour</string>
+    <string name="error_room">The room is not available at this time.</string>
+    <string name="reset_filter">Filters has been reset</string>
+    <string name="place">By place</string>
+    <string name="hour">By hour</string>
+    <string name="date">By date</string>
+    <string name="reset">Reset filter</string>
+    <string name="start">To</string>
+    <string name="end">Of</string>
+    <string name="meetingDate">Date</string>
+    <string name="emailError">You have not completed contributors field</string>
+
+
+</resources>

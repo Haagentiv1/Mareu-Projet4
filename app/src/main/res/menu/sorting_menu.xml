@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/sortingBtn"
+        android:icon="@drawable/ic_filter_list_24px"
+        android:title="item1"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item  android:id="@+id/SpinnerPlace"
+                android:title="@string/place"
+                app:actionViewClass="android.widget.Spinner"
+                app:showAsAction="always"/>
+            <item android:id="@+id/sortingByHoursItem"
+                android:title="@string/hour"/>
+            <item
+                android:id="@+id/FilterByDate"
+                android:title="@string/date"/>
+            <item
+                android:id="@+id/ResetFilter"
+                android:title="@string/reset"/>
+
+        </menu>
+    </item>
+
+
+
+</menu>

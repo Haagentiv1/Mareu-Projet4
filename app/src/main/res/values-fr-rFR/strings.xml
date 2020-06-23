@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mareu</string>
+    <string name="contributors" translatable="false">Contributeurs</string>
+    <string name="editText_error" translatable="false">Vous n\'avez pas completé tous les champs requis</string>
+    <string name="filter_by_date" translatable="false">La liste à été filtrée par Date.</string>
+    <string name="filter_by_hours" translatable="false">La liste à été filtrée par Heure.</string>
+    <string name="filter_by_place" translatable="false">La liste à été filtrée par Salle.</string>
+    <string name="meeting_name" translatable="false">Titre</string>
+    <string name="meeting_subject">Sujet</string>
+    <string name="meeting_place">Salle</string>
+    <string name="meeting_date">Date</string>
+    <string name="meeting_hours">Heure</string>
+    <string name="error_room" translatable="false">"La salle que vous avez choisie n'est pas disponible pendant ce créneau. "</string>
+    <string name="reset_filter">Les filtres ont été reinitialisés</string>
+    <string name="place">Par lieux</string>
+    <string name="hour">Par heure</string>
+    <string name="date">Par date</string>
+    <string name="reset">réinitialiser les filtres</string>
+    <string name="start">De</string>
+    <string name="end">À</string>
+    <string name="meetingDate">Date</string>
+    <string name="emailError">Veuillez choisir des participants</string>
+</resources>
