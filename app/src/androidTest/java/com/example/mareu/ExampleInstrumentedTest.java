@@ -58,10 +58,6 @@ public class ExampleInstrumentedTest {
         assertThat(mActivity, notNullValue());
     }
 
-
-
-
-
     @Test
     public void myMeetingList_deleteAction_shouldRemoveItem(){
         onView(ViewMatchers.withId(R.id.list_meeting)).check(withItemCount(ITEMS_COUNT));
@@ -93,9 +89,7 @@ public class ExampleInstrumentedTest {
         onView(ViewMatchers.withId(R.id.CreateMeetingBtn)).perform(click());
         onView(ViewMatchers.withId(R.id.list_meeting)).check(withItemCount(ITEMS_COUNT + 1));
         // then : the number of element is 11
-
     }
-
     @Test
     public void myMeetingList_FilterByPlace_shouldFilterTheNeighbourList(){
         //Given : We filter the meeting list by place
@@ -108,8 +102,6 @@ public class ExampleInstrumentedTest {
         onView(ViewMatchers.withId(R.id.list_meeting)).check(withItemCount(1));
         //Then : The number of element is 1
     }
-
-
     @Test
     public void myMeetingList_FilterByHours_shouldFilterTheNeighbourList(){
         //Given : We filter the meeting list by hour
@@ -122,9 +114,7 @@ public class ExampleInstrumentedTest {
         onView(allOf(withId(android.R.id.button1), withText("OK") ,isDisplayed())).perform(scrollTo(), click());
         onView(ViewMatchers.withId(R.id.list_meeting)).check(withItemCount(9));
         //Then : The number of element is 9
-
     }
-
     @Test
     public void myMeetingList_FilterByDate_shouldFilterTheNeighbourList(){
         //Given : we filter the meeting list by date
@@ -184,6 +174,4 @@ public class ExampleInstrumentedTest {
         onView(ViewMatchers.withId(R.id.MeetingName)).check(matches(withText("Réunion A")));
 
     }
-
-
 }

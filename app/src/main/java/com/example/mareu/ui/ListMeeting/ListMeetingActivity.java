@@ -5,7 +5,6 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -70,15 +69,6 @@ public class ListMeetingActivity extends AppCompatActivity {
             }
         });
     }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            setContentView(R.layout.activity_main); }
-        super.onConfigurationChanged(newConfig);
-    }
-
-
     private void openAddMeetingActivity() {
         Intent intent = new Intent(this, AddMeetingActivity.class);
         startActivity(intent);
@@ -97,16 +87,13 @@ public class ListMeetingActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.SpinnerPlace:
                 meetingRoomDialog();
-                Toast.makeText(this, R.string.filter_by_place, Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.sortingByHoursItem:
                 TimeEndDialog();
                 timeStartDialog();
-                Toast.makeText(this, R.string.filter_by_hours, Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.FilterByDate:
                 OpenDateDialog();
-                Toast.makeText(this, R.string.filter_by_date, Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.ResetFilter:
                 EventBus.getDefault().post(new ResetFilterEvent());
@@ -128,7 +115,8 @@ public class ListMeetingActivity extends AppCompatActivity {
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 mDate = String.format("%02d-%02d-%d",dayOfMonth,(month + 1),year);
                 EventBus.getDefault().post(new ListFilterByDateEvent(mDate));
-                Toast.makeText(getApplicationContext(), R.string.reset_filter + mDate, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.filter_by_date, Toast.LENGTH_SHORT).show();
+
             }
         }, mYear, mMonth, mDay);
         datePickerDialog.show();
@@ -142,9 +130,7 @@ public class ListMeetingActivity extends AppCompatActivity {
         final TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-
                 mStartTime = String.format ("%02d:%02d",hourOfDay , minute);
-
             }
         }, mHour, mMinute, false);
         timePickerDialog.show();
@@ -158,10 +144,9 @@ public class ListMeetingActivity extends AppCompatActivity {
         final TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-
                 mEndTime = String.format ("%02d:%02d",hourOfDay , minute);
                 EventBus.getDefault().post(new ListFilterByHoursEvent(mStartTime,mEndTime));
-
+                Toast.makeText(getApplicationContext(), R.string.filter_by_hours, Toast.LENGTH_SHORT).show();
             }
         }, mHour, mMinute, false);
         timePickerDialog.show();}
@@ -175,16 +160,15 @@ public class ListMeetingActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSpinner.setAdapter(adapter);
 
-
         mBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
               mPlace = mSpinner.getSelectedItem().toString();
               EventBus.getDefault().post(new ListFilterByPLaceEvent(mPlace));
               dialog.dismiss();
+              Toast.makeText(getApplicationContext(), R.string.filter_by_place, Toast.LENGTH_SHORT).show();
             }
         });
-
         mBuilder.setView(mView);
         AlertDialog dialog = mBuilder.create();
         dialog.show();

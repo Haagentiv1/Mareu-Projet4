@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public abstract class DummyMeetingGenerator {
-    private static List<String> mail = Arrays.asList("tristan.claudic@gmail.com","tesggggggt@gmail.com","claudic.pro@gmail.com");
+    private static List<String> mail = Arrays.asList("tristan.claudic@gmail.com","test@gmail.com","claudic.pro@gmail.com");
     /**
      * class for test
      */

@@ -115,8 +115,6 @@ public class DummyMeetingApiService implements MeetingApiService {
         String HourPattern = "([0-1][0-9]|2[0-3]):[0-5][0-9]";
         return Hour.matches(HourPattern);
     }
-
-
     /**
      * This method check if a new meeting is between an other one.
      * first time, we check if we have a meeting in the same room #PLace at the same Date

@@ -10,8 +10,6 @@ public class MeetingRoom {
     private String roomColor;
 
 
-
-
     public MeetingRoom(Integer id , String name, String roomColor){
         this.id = id;
         this.name = name;

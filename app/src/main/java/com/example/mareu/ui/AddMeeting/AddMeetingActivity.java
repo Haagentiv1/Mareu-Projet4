@@ -39,7 +39,6 @@ public class AddMeetingActivity extends AppCompatActivity {
     private final List<MeetingRoom> mMeetingRooms = mApiService.getMeetingRooms();
     private final List<String> mMeetingEmail = mApiService.getMeetingEmail();
 
-
     @BindView(R.id.MeetingColor)
     ImageView mMeetingColor;
     @BindView(R.id.MeetingNameLyt)
@@ -70,9 +69,6 @@ public class AddMeetingActivity extends AppCompatActivity {
     private String mColor,mEndHour,mStartHour;
     private ArrayList<String> mContributors;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,14 +97,12 @@ public class AddMeetingActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), R.string.error_room, Toast.LENGTH_SHORT).show();
                 } else if (!EditTextVerification()) {
                     Toast.makeText(getApplicationContext(), R.string.editText_error, Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     mApiService.addMeeting(CreateMeeting());
                     AddMeetingActivity.this.finish();
-                }
-            }
+                }}
         });
     }
-
 
     public Boolean EditTextVerification() {
          if (mApiService.emptyTextVerification(mMeetingName.getEditText().getText().toString()) |
@@ -116,8 +110,7 @@ public class AddMeetingActivity extends AppCompatActivity {
                !mApiService.hourVerification(mStartHour) |
                  !mApiService.hourVerification(mEndHour)|
                 !mApiService.dateVerification(mMeetingDate.getEditText().getText().toString()))
-                 {
-             return false;
+                 { return false;
          }else return true;
     }
 
@@ -134,7 +127,9 @@ public class AddMeetingActivity extends AppCompatActivity {
         );
         return meeting;
     }
-
+    public void setEmailSpinner(){
+        mEmailSpinner.setSpinnerList(mMeetingEmail);
+    }
 
     public void setMeetingPlaceSpinner() {
         ArrayAdapter<MeetingRoom> adapter = new ArrayAdapter<MeetingRoom>(this, android.R.layout.simple_spinner_dropdown_item, mMeetingRooms);
@@ -204,10 +199,4 @@ public class AddMeetingActivity extends AppCompatActivity {
         }, mHour, mMinute, false);
         timePickerDialog.show();
     }
-
-    public void setEmailSpinner(){
-        mEmailSpinner.setSpinnerList(mMeetingEmail);
-    }
-
-
 }

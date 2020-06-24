@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -40,21 +39,14 @@ public class MeetingViewDialog extends AppCompatActivity {
     @BindView(R.id.CancelActivity)
     MaterialButton mCancelBtn;
 
-
     private Meeting mMeeting;
     private MeetingApiService mApiService = DI.getMeetingApiService();
 
     private void getMeeting() {
-
         Intent intent = getIntent();
-        if (intent != null) {
-            mMeeting = intent.getParcelableExtra("Meeting");
-            setLayoutDrawable();
-        } else {
-            Toast.makeText(this, "null object", Toast.LENGTH_LONG);
-        }
+        mMeeting = intent.getParcelableExtra("Meeting");
+        setLayoutDrawable();
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +61,6 @@ public class MeetingViewDialog extends AppCompatActivity {
             }
         });
     }
-
     public void setLayoutDrawable() {
         mMeetingColor.setColorFilter(Color.parseColor(mMeeting.getMeetingColor()));
         mMeetingName.setText(mMeeting.getName());
@@ -80,12 +71,4 @@ public class MeetingViewDialog extends AppCompatActivity {
         mMeetingEndHour.setText(mMeeting.getEndHour());
         mMeetingEmail.setText(mApiService.concatEmail(mMeeting));
     }
-
-
-
-
-
-
-
-
 }

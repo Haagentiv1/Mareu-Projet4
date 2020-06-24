@@ -49,18 +49,12 @@ public class MeetingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list_meeting,container,false);
         mRecyclerView = view.findViewById(R.id.list_meeting);
-
         mApiService = DI.getMeetingApiService();
-
         mAdapter = new MeetingAdapter(mApiService.getMeetings());
-
         mRecyclerView.setAdapter(mAdapter);
-
         mManager = new LinearLayoutManager(getActivity());
-
         mRecyclerView.setLayoutManager(mManager);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-
         return view;
     }
     private void initList(){
@@ -100,7 +94,6 @@ public class MeetingFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-
         EventBus.getDefault().unregister(this);
     }
 }

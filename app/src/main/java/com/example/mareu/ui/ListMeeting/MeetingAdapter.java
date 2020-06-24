@@ -27,14 +27,9 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
 
     private final List<Meeting> mMeetings;
     private MeetingApiService mApiService = DI.getMeetingApiService();
-
-
     public MeetingAdapter(List<Meeting> items){
         mMeetings = items;
     }
-
-
-
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -70,7 +65,6 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
         return mMeetings.size();
     }
 
-
     public  class ViewHolder extends RecyclerView.ViewHolder{
         public ImageView mRoomColor;
         public TextView mMeetingDesc;
@@ -87,7 +81,4 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
             mOpenDialogBtn = itemView.findViewById(R.id.itemLayout);
         }
     }
-
-
-
 }

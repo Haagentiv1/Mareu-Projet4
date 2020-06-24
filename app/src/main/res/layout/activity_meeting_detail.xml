@@ -183,11 +183,14 @@
                 android:src="@drawable/ic_people_24px"/>
             <TextView
                 android:id="@+id/meetingParticipantsItem"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
+                android:ellipsize="end"
+
                 android:layout_gravity="center_vertical"
-                android:paddingStart="20dp"/>
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"/>
         </LinearLayout>
     </LinearLayout>
     <com.google.android.material.button.MaterialButton
