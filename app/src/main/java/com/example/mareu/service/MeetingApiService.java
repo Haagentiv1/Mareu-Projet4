@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface MeetingApiService {
 
-    List<Meeting> getMeetings();
+    List<Meeting> getMeetings ();
 
     List<MeetingRoom> getMeetingRooms();
 

@@ -12,40 +12,40 @@ import java.util.List;
 
 public class DummyMeetingApiService implements MeetingApiService {
 
-    private List<Meeting> Meetings = DummyMeetingGenerator.generateMeeting();
+    private List<Meeting> mMeetings = DummyMeetingGenerator.generateMeeting();
 
-    private List<MeetingRoom> MeetingRooms = DummyMeetingRoomGenerator.generateMeetingRoom();
+    private List<MeetingRoom> mMeetingRooms = DummyMeetingRoomGenerator.generateMeetingRoom();
 
-    private List<String> MeetingEmail = DummyEmailGenerator.generateEmail();
+    private List<String> mMeetingEmail = DummyEmailGenerator.generateEmail();
 
     @Override
     public List<Meeting> getMeetings() {
-        return Meetings;
+        return mMeetings;
     }
 
     @Override
     public List<MeetingRoom> getMeetingRooms() {
-        return MeetingRooms;
+        return mMeetingRooms;
     }
 
     @Override
-    public List<String> getMeetingEmail() { return MeetingEmail; }
+    public List<String> getMeetingEmail() { return mMeetingEmail; }
 
     @Override
     public void addMeeting(Meeting meeting) {
-        Meetings.add(meeting);
+        mMeetings.add(meeting);
     }
 
     @Override
     public void deleteMeeting(Meeting meeting) {
-        Meetings.remove(meeting);
+        mMeetings.remove(meeting);
     }
 
     @Override
     public List<Meeting> filterByHours(String startHour,String endHour) {
         List<Meeting> FilterByHours = new ArrayList<>();
 
-        for (Meeting meeting : Meetings){
+        for (Meeting meeting : mMeetings){
             DateTimeFormatter df = DateTimeFormat.forPattern("HH:mm");
             LocalTime meetingStart = df.parseLocalTime(meeting.getStartHour());
             LocalTime meetingEnd = df.parseLocalTime(meeting.getEndHour());
@@ -61,7 +61,7 @@ public class DummyMeetingApiService implements MeetingApiService {
     public List<Meeting> filterByPlace(String place) {
         List<Meeting> FilterByPlace = new ArrayList<>();
 
-        for (Meeting meeting : Meetings){
+        for (Meeting meeting : mMeetings){
             if (meeting.getPlace().equals(place)){
                 FilterByPlace.add(meeting);
             }
@@ -72,7 +72,7 @@ public class DummyMeetingApiService implements MeetingApiService {
     public List<Meeting> filterByDate(String Date) {
         List<Meeting> FilterByDate = new ArrayList<>();
 
-        for (Meeting meeting : Meetings){
+        for (Meeting meeting : mMeetings){
             if (meeting.getDate().equals(Date)){
                 FilterByDate.add(meeting);
             }
@@ -82,10 +82,10 @@ public class DummyMeetingApiService implements MeetingApiService {
     @Override
     public String concatStringMeetingDEsc(Meeting meeting) {
         String name = meeting.getName();
+        String hour = meeting.getStartHour();
         String place = meeting.getPlace();
-        String subject = meeting.getSubject();
 
-        String meetingDescription = name + " - " + place + " - " + subject;
+        String meetingDescription = name + " - " + hour + " - " + place;
 
         return meetingDescription;
     }
@@ -101,7 +101,7 @@ public class DummyMeetingApiService implements MeetingApiService {
 
     @Override
     public Boolean emptyTextVerification(String Text) {
-        return Text.matches("");
+        return Text.length() == 0;
     }
 
     @Override
@@ -112,7 +112,7 @@ public class DummyMeetingApiService implements MeetingApiService {
 
     @Override
     public Boolean hourVerification(String Hour) {
-        String HourPattern = "([0-1][0-9]|2[0-3]):[0-5][0-9]";
+        String HourPattern = "([0-1][0-9]|2[0-3]):[0-5][0-9] - ([0-1][0-9]|2[0-3]):[0-5][0-9]";
         return Hour.matches(HourPattern);
     }
     /**
@@ -128,7 +128,7 @@ public class DummyMeetingApiService implements MeetingApiService {
     @Override
     public Boolean meetingVerificationBis(String Place, String Date, String startHour, String endHour) {
         
-        for (Meeting meeting : Meetings){
+        for (Meeting meeting : mMeetings){
             if (meeting.getPlace().equals(Place) && meeting.getDate().equals(Date)){
                 DateTimeFormatter df = DateTimeFormat.forPattern("HH:mm");
                 LocalTime meetingStart = df.parseLocalTime(meeting.getStartHour());

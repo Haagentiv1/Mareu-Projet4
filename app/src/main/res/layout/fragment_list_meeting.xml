@@ -3,9 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:listitem="@layout/fragment_meeting"
     android:id="@+id/list_meeting"
+    android:scrollbars="vertical"
+    app:layoutManager="LinearLayoutManager"
     tools:context=".ui.ListMeeting.MeetingAdapter"
     />
 

@@ -21,6 +21,8 @@
     <string name="end">Of</string>
     <string name="meetingDate">Date</string>
     <string name="emailError">You have not completed contributors field</string>
+    <string name="start_hour_sentence">Choose the start time of the meeting</string>
+    <string name="end_hour_sentence">Choose the end time of the meeting</string>
 
 
 </resources>

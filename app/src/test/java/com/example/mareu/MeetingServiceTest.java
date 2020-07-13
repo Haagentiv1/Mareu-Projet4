@@ -13,6 +13,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -47,7 +48,8 @@ public class MeetingServiceTest {
     }
     @Test
     public void addMeetingWithSuccess(){
-        Meeting meetingToAdd = new Meeting("Test","Test","Sam","12:30","13h30","28-4-2020","Test@gmail.com","#ff000000");
+        List<String> mail = Arrays.asList("tristan.claudic@gmail.com","test@gmail.com","claudic.pro@gmail.com");
+        Meeting meetingToAdd = new Meeting("Test","Test","Sam","12:30","13h30","28-4-2020",mail,"#ff000000");
         service.addMeeting(meetingToAdd);
         assertTrue(service.getMeetings().contains(meetingToAdd));
     }
@@ -74,14 +76,9 @@ public class MeetingServiceTest {
     }
     @Test
     public void concatStringMeetingDescWithSuccess(){
-        Meeting meetingToTest = new Meeting("Test","Test","Sam","12:30","13:30","28-4-2020","Test@gmail.com","#ff000000");
+        List<String> mail = Arrays.asList("tristan.claudic@gmail.com","test@gmail.com","claudic.pro@gmail.com");
+        Meeting meetingToTest = new Meeting("Test","Test","Sam","12:30","13:30","28-4-2020",mail,"#ff000000");
         assertEquals(service.concatStringMeetingDEsc(meetingToTest), "Test - Sam - Test");
-    }
-    @Test
-    public void EmailVerificationWithSuccess(){
-        assertTrue(service.emailVerification("test.ok@gmail.com"));
-        assertFalse(service.emailVerification("testmail.fr"));
-        assertFalse(service.emailVerification("test@gmailfr"));
     }
     @Test
     public void dateVerificationWithSuccess(){
@@ -95,7 +92,7 @@ public class MeetingServiceTest {
         assertFalse(service.hourVerification("2:30"));
         assertFalse(service.hourVerification("12:6"));
         assertFalse(service.hourVerification("24:30"));
-        assertTrue(service.hourVerification("12:30"));
+        assertTrue(service.hourVerification("12:30 - 13:50"));
     }
     @Test
     public void meetingVerificationWithSuccess(){

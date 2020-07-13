@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -46,15 +45,15 @@ public class MeetingFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list_meeting,container,false);
         mRecyclerView = view.findViewById(R.id.list_meeting);
-        mApiService = DI.getMeetingApiService();
-        mAdapter = new MeetingAdapter(mApiService.getMeetings());
-        mRecyclerView.setAdapter(mAdapter);
         mManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mManager);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        mAdapter = new MeetingAdapter(mApiService.getMeetings());
+        mRecyclerView.setAdapter(mAdapter);
+        initList();
         return view;
     }
     private void initList(){
@@ -88,6 +87,11 @@ public class MeetingFragment extends Fragment {
     public void onStart() {
         super.onStart();
         EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         initList();
     }
 

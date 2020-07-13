@@ -105,13 +105,15 @@ public class AddMeetingActivity extends AppCompatActivity {
     }
 
     public Boolean EditTextVerification() {
-         if (mApiService.emptyTextVerification(mMeetingName.getEditText().getText().toString()) |
-                mApiService.emptyTextVerification(mMeetingSubject.getEditText().getText().toString())|
-               !mApiService.hourVerification(mStartHour) |
-                 !mApiService.hourVerification(mEndHour)|
-                !mApiService.dateVerification(mMeetingDate.getEditText().getText().toString()))
-                 { return false;
-         }else return true;
+         if (!mApiService.emptyTextVerification(mMeetingName.getEditText().getText().toString()) &&
+                !mApiService.emptyTextVerification(mMeetingSubject.getEditText().getText().toString())&&
+                !mApiService.emptyTextVerification(mMeetingDate.getEditText().getText().toString()) &&
+                 !mApiService.emptyTextVerification(mMeetingHours.getEditText().getText().toString()) &&
+                mApiService.hourVerification(mMeetingHours.getEditText().getText().toString())&&
+                 (getSelectedEmail() != null && !getSelectedEmail().isEmpty())
+                )
+                 { return true;
+         }else return false;
     }
 
     public Meeting CreateMeeting() {
@@ -182,6 +184,7 @@ public class AddMeetingActivity extends AppCompatActivity {
                 mMeetingHour.setText(mStartHour);
             }
         }, mHour, mMinute, false);
+        timePickerDialog.setTitle(R.string.start_hour_sentence);
         timePickerDialog.show();
     }
 
@@ -197,6 +200,7 @@ public class AddMeetingActivity extends AppCompatActivity {
                 mMeetingHour.setText(mStartHour + " - " +  mEndHour);
             }
         }, mHour, mMinute, false);
+        timePickerDialog.setTitle(R.string.end_hour_sentence);
         timePickerDialog.show();
     }
 }

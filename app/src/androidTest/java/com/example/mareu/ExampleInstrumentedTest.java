@@ -3,6 +3,7 @@ package com.example.mareu;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
+import androidx.test.espresso.Espresso;
 import androidx.test.espresso.contrib.PickerActions;
 import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.matcher.ViewMatchers;
@@ -21,7 +22,6 @@ import org.junit.runner.RunWith;
 import static androidx.test.espresso.Espresso.closeSoftKeyboard;
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.Espresso.pressBack;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.action.ViewActions.typeText;
@@ -76,7 +76,9 @@ public class ExampleInstrumentedTest {
         //when perform a click on a create icon
         onView(ViewMatchers.withId(R.id.edit_MeetingNameEditText)).perform(typeText("Test1"));
         onView(ViewMatchers.withId(R.id.MeetingSubjectEditText)).perform(typeText("Test1"));
-        onView(ViewMatchers.withId(R.id.MeetingDateEditText)).perform(scrollTo()).perform(typeText("20-04-2020"));
+        onView(allOf(withId(R.id.OpenDateDialog))).perform(scrollTo(),click());
+        onView(allOf(withClassName(Matchers.equalTo(DatePicker.class.getName())))).perform(PickerActions.setDate(2020,04,28));
+        onView(allOf(withId(android.R.id.button1), withText("OK") ,isDisplayed())).perform(scrollTo(), click());
         onView(ViewMatchers.withId(R.id.OpenTimeDialog)).perform(scrollTo(), click());
         onView(allOf(withClassName(Matchers.equalTo(TimePicker.class.getName())))).perform(PickerActions.setTime(10,30));
         onView(allOf(withId(android.R.id.button1), withText("OK") ,isDisplayed())).perform(scrollTo(), click());
@@ -149,7 +151,9 @@ public class ExampleInstrumentedTest {
         //when perform a click on a create icon
         onView(ViewMatchers.withId(R.id.edit_MeetingNameEditText)).perform(typeText("Test1"));
         onView(ViewMatchers.withId(R.id.MeetingSubjectEditText)).perform(typeText("Test1"));
-        onView(ViewMatchers.withId(R.id.MeetingDateEditText)).perform(scrollTo()).perform(typeText("28-04-2020"));
+        onView(allOf(withId(R.id.OpenDateDialog))).perform(scrollTo(),click());
+        onView(allOf(withClassName(Matchers.equalTo(DatePicker.class.getName())))).perform(PickerActions.setDate(2020,04,28));
+        onView(allOf(withId(android.R.id.button1), withText("OK") ,isDisplayed())).perform(scrollTo(), click());
         onView(ViewMatchers.withId(R.id.OpenTimeDialog)).perform(scrollTo(), click());
         onView(allOf(withClassName(Matchers.equalTo(TimePicker.class.getName())))).perform(PickerActions.setTime(12,40));
         onView(allOf(withId(android.R.id.button1), withText("OK") ,isDisplayed())).perform(scrollTo(), click());
@@ -160,7 +164,7 @@ public class ExampleInstrumentedTest {
         onView(allOf(withId(android.R.id.button1), withText("OK"),isDisplayed())).perform(scrollTo(),click());
         closeSoftKeyboard();
         onView(ViewMatchers.withId(R.id.CreateMeetingBtn)).perform(click());
-        pressBack();
+        Espresso.pressBack();
         onView(ViewMatchers.withId(R.id.list_meeting)).check(withItemCount(ITEMS_COUNT));
     }
     @Test

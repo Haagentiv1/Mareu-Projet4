@@ -21,4 +21,6 @@
     <string name="end">À</string>
     <string name="meetingDate">Date</string>
     <string name="emailError">Veuillez choisir des participants</string>
+    <string name="start_hour_sentence">Choisissez l\'heure de début de la réunion.</string>
+    <string name="end_hour_sentence">Choisissez l\'heure de fin de la réunion.</string>
 </resources>

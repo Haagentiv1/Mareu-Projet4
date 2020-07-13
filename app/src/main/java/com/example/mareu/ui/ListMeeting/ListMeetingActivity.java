@@ -59,7 +59,7 @@ public class ListMeetingActivity extends AppCompatActivity {
         MeetingFragment fragment = new MeetingFragment();
         FragmentManager mFragmentManager = getSupportFragmentManager();
         FragmentTransaction mTransaction = mFragmentManager.beginTransaction();
-        mTransaction.add(R.id.contentMain, fragment);
+        mTransaction.replace(R.id.contentMain, fragment);
         mTransaction.commit();
         FloatingActionButton mAddMeetingBTn = findViewById(R.id.addMeetingBtn);
         mAddMeetingBTn.setOnClickListener(new View.OnClickListener() {
